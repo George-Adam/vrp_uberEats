@@ -10,6 +10,7 @@ hasDeliveryJob = false
 configC = {
     pickFood = "~y~Ia mancarea de la locatia de pe harta.",
     leaveFood = "~o~Apasa ~r~E ~o~ pentru a lua pachetul.",
+    goDeliver = "~y~Livreaza mancarea la locatia de pe harta.",
     leavingFood = "~g~Lasi pachetul cu mancare la usa."
 }
 
@@ -106,7 +107,7 @@ Citizen.CreateThread(function()
                     DrawMarker(1, pickup[1],pickup[2],pickup[3]-1, 0, 0, 0, 0, 0, 0, 1.2001, 1.2001, 2.001, 255, 255, 255, 100, 0, 0, 0, 1, 0, 0, 0)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, pickup[1],pickup[2],pickup[3]) < 2.001) and not isInVehicle then
                         if IsControlPressed(1, 51) then
-                            notify("~g~Iei pachetul cu mancare.")
+                            notify(configC.pickFood)
                             TaskStartScenarioInPlace(player, 'PROP_HUMAN_PARKING_METER', 0, true)
                             Wait(4000)
                             ClearPedTasks(player)
@@ -117,7 +118,7 @@ Citizen.CreateThread(function()
                                 pickup = nil
                             end
                             delivery = deliverLocation[math.random(#deliverLocation)]
-                            notify("~y~Livreaza mancarea la locatia de pe harta.")
+                            notify(configC.goDeliver)
                             deliveryFoodBlip(delivery[1],delivery[2],delivery[3], 649, 44)
                         end
                     end
